@@ -1,10 +1,11 @@
 const User = require("../model/user");
-const { sendResponse } = require("../util/commonFunction");
+const { sendResponse, parseBody } = require("../util/commonFunction");
 
 export const handler = async (event: any) => {
   try {
-    const { user_id } = JSON.parse(event.body);
-
+    parseBody(event);
+    const { user_id } = event.body;
+    
     if (!user_id)
       return sendResponse(400, { message: "user id cannot be empty" });
 

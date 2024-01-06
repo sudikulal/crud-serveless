@@ -1,5 +1,5 @@
 const User = require("../model/user");
-const { sendResponse } = require("../util/commonFunction");
+const { sendResponse, parseBody } = require("../util/commonFunction");
 
 interface UpdateObject {
   name?: string;
@@ -10,7 +10,9 @@ interface UpdateObject {
 
 export const handler = async (event: any) => {
   try {
-    const { user_id, name, age, occupation, gender } = JSON.parse(event.body);
+    parseBody(event);
+
+    const { user_id, name, age, occupation, gender } = event.body;
     if (!user_id)
       return sendResponse(400, { message: "user id cannot be empty" });
 

@@ -1,10 +1,42 @@
 service: crud-serverless
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: dev
+  region: ap-south-1
+  timeout: 25
+
+plugins:
+  - serverless-offline
 
 functions:
-  function1:
-    handler: index.handler
+  create:
+    handler: dist/src/index.create
+    events:
+      - http:
+          path: create
+          method: post
+          cors: true
+  read:
+    handler: dist/src/index.read
+    events:
+      - http:
+          path: read
+          method: get
+          cors: true
+  update:
+    handler: dist/src/index.update
+    events:
+      - http:
+          path: update
+          method: put
+          cors: true
+  delete:
+    handler: dist/src/index.delete
+    events:
+      - http:
+          path: delete
+          method: delete
+          cors: true

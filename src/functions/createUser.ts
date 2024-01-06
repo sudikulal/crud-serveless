@@ -1,9 +1,10 @@
 const User = require("../model/user");
-const { sendResponse } = require("../util/commonFunction");
+const { sendResponse, parseBody } = require("../util/commonFunction");
 
 export const handler = async (event: any) => {
   try {
-    const { name, age, occupation, gender } = JSON.parse(event.body || "");
+    parseBody(event);
+    const { name, age, occupation, gender } = event.body;
 
     if (!name || !age || !occupation || !gender)
       return sendResponse(400, {
@@ -24,6 +25,7 @@ export const handler = async (event: any) => {
       user: newUser,
     });
   } catch (error) {
+    console.error(error);
     return sendResponse(500, {
       message: "something went wrong",
     });
