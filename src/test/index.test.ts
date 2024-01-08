@@ -1,7 +1,7 @@
-const createTestCase = require("./testcase/create.test");
+const createTestCase = require("./testcase/createTest");
 const readTestCase = require("./testcase/readTest");
-const updateTestCase = require("./testcase/update.test");
-const deleteTestcase = require("./testcase/delete.test");
+const updateTestCase = require("./testcase/updateTest");
+const deleteTestcase = require("./testcase/deleteTest");
 const userDao = require("../model/user");
 
 const testUser: any = {};

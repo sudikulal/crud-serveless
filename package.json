@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "testRegex": "/dist/.*\\.test\\.js$",
+    "moduleFileExtensions": ["js", "json"],
+    "testEnvironment": "node"
+  },
   "scripts": {
-    "test": "jest"
+    "test": "tsc && jest"
   },
   "author": "",
   "license": "ISC",
