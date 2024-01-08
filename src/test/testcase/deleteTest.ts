@@ -6,6 +6,9 @@ exports.shouldDelete = (userId: String) => {
       body: {
         user_id: userId,
       },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
     };
 
     try {
@@ -19,9 +22,12 @@ exports.shouldDelete = (userId: String) => {
 
 exports.shouldNotDelete = (userId: String) => {
   test("should not delete", async () => {
-    const req = {
+    const event = {
       body: {
         user_id: userId,
+      },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     };
 
