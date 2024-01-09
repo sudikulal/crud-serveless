@@ -16,11 +16,9 @@ exports.shouldDelete = async (userId: String) => {
   }
 };
 
-exports.shouldNotDelete = async (userId: String) => {
+exports.shouldNotDelete = async () => {
   const event = {
-    body: {
-      user_id: userId,
-    },
+    body: {},
   };
 
   try {

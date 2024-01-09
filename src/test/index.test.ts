@@ -7,24 +7,29 @@ const userDao = require("../model/user");
 
 describe("running test", () => {
   let testUser: {
-    user_id?:string
+    _id?: string;
   };
-  test.concurrent("create user", () => {
-    testUser = createTestCase.shouldCreate();
+
+  test.concurrent("create user", async () => {
+    testUser = await createTestCase.shouldCreate();
+    console.log(testUser);
   });
+
   test.concurrent("should not create", () => createTestCase.shouldNotCreate());
 
   test.concurrent("list user", () => readTestCase.shouldRead());
 
-  test.concurrent("update user", () =>
-    updateTestCase.shouldUpdate(testUser.user_id)
-  );
+  test.concurrent("update user", async () => {
+    expect(testUser._id).toBeDefined();
+    await updateTestCase.shouldUpdate(testUser._id);
+  });
+
   test.concurrent("should not update", () => updateTestCase.shouldNotUpdate());
 
-  test.concurrent("delete user", () =>
-    deleteTestcase.shouldDelete(testUser.user_id)
-  );
-  test.concurrent("should not delete", () =>
-    deleteTestcase.shouldNotDelete(testUser.user_id)
-  );
+  test.concurrent("delete user", async () => {
+    expect(testUser._id).toBeDefined();
+    await deleteTestcase.shouldDelete(testUser._id);
+  });
+
+  test.concurrent("should not delete", () => deleteTestcase.shouldNotDelete());
 });

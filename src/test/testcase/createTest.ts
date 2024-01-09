@@ -2,7 +2,7 @@ const createUser = require("../../functions/createUser");
 
 exports.shouldCreate = async () => {
   const user = {
-    name: "user",
+    name: "user"+Math.random()*100,
     age: 18,
     occupation: "developer",
     gender: "male",
@@ -14,7 +14,8 @@ exports.shouldCreate = async () => {
   try {
     const res = await createUser.handler(event);
     expect(res.statusCode).toEqual(200);
-    return { ...user };
+    const data = JSON.parse(res.body)
+    return { ...data.user };
   } catch (error) {
     console.error(error);
     throw error;
