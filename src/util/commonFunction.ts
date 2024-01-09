@@ -7,7 +7,10 @@ export const sendResponse = (status: number, response: string) => {
 
 export const parseBody = (event: any) => {
   try {
-    if (event.headers["Content-Type"] === "application/x-www-form-urlencoded") {
+    if (
+      event.headers &&
+      event.headers["Content-Type"] === "application/x-www-form-urlencoded"
+    ) {
       const querystring = require("querystring");
       event.body = querystring.parse(event.body);
     }
