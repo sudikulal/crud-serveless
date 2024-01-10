@@ -10,26 +10,26 @@ describe("running test", () => {
     _id?: string;
   };
 
-  test.concurrent("create user", async () => {
+  test("create user", async () => {
     testUser = await createTestCase.shouldCreate();
     console.log(testUser);
   });
 
-  test.concurrent("should not create", () => createTestCase.shouldNotCreate());
+  test("should not create", () => createTestCase.shouldNotCreate());
 
-  test.concurrent("list user", () => readTestCase.shouldRead());
+  test("list user", () => readTestCase.shouldRead());
 
-  test.concurrent("update user", async () => {
+  test("update user", async () => {
     expect(testUser._id).toBeDefined();
     await updateTestCase.shouldUpdate(testUser._id);
   });
 
-  test.concurrent("should not update", () => updateTestCase.shouldNotUpdate());
+  test("should not update", () => updateTestCase.shouldNotUpdate());
 
-  test.concurrent("delete user", async () => {
+  test("delete user", async () => {
     expect(testUser._id).toBeDefined();
     await deleteTestcase.shouldDelete(testUser._id);
   });
 
-  test.concurrent("should not delete", () => deleteTestcase.shouldNotDelete());
+  test("should not delete", () => deleteTestcase.shouldNotDelete());
 });

@@ -9,7 +9,7 @@ export const handler = async (event: any) => {
     if (!user_id)
       return sendResponse(400, { message: "user id cannot be empty" });
 
-    const deleteddUser = await User.findByIdAndRemove(user_id);
+    const deleteddUser = await User.findOneAndDelete({ _id: user_id });
 
     if (!deleteddUser) return sendResponse(400, { message: "invalid user" });
 

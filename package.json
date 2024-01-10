@@ -9,7 +9,8 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "test": "tsc && jest --detectOpenHandles"
+    "test": "tsc && jest --runInBand",
+    "start":"tsc && serverless offline"
   },
   "author": "",
   "license": "ISC",
